@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* ── Theme tokens (dark = default) ── */
+@theme {
+  --color-forest: #283618;
+  --color-olive: #606C38;
+  --color-cornsilk: #FEFAE0;
+  --color-clay: #DDA15E;
+  --color-copper: #BC6C25;
+
+  --color-background: var(--color-forest);
+  --color-surface: var(--color-olive);
+  --color-foreground: var(--color-cornsilk);
+  --color-accent: var(--color-clay);
+  --color-emphasis: var(--color-copper);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Animation tokens */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Light theme override ── */
+[data-theme="light"] {
+  --color-forest: #FEFAE0;
+  --color-olive: #e8e4c8;
+  --color-cornsilk: #283618;
+  --color-clay: #BC6C25;
+  --color-copper: #8B4513;
+}
+
+/* ── Base ── */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Animations ── */
+@keyframes score-pulse {
+  0%   { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes scale-in {
+  0%   { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slide-up {
+  0%   { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes slide-down-out {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(16px); opacity: 0; }
+}
+
+@keyframes fade-in-backdrop {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  0%   { transform: translateX(40px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes expand-down {
+  0%   { max-height: 0; opacity: 0; }
+  100% { max-height: 600px; opacity: 1; }
+}
+
+@keyframes collapse-up {
+  0%   { max-height: 600px; opacity: 1; }
+  100% { max-height: 0; opacity: 0; }
+}
+
+.animate-score-pulse {
+  animation: score-pulse 100ms ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 300ms ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 150ms ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 250ms var(--ease-out-expo) both;
+}
+
+.animate-slide-down-out {
+  animation: slide-down-out 200ms ease-out both;
+}
+
+.animate-backdrop {
+  animation: fade-in-backdrop 200ms ease-out both;
+}
+
+.animate-slide-in {
+  animation: slide-in-left 200ms ease-out both;
+}
+
+.animate-expand {
+  animation: expand-down 200ms ease-out both;
+  overflow: hidden;
+}
+
+/* Stagger support for miss map dots */
+.animate-dot-1 { animation-delay: 0ms; }
+.animate-dot-2 { animation-delay: 50ms; }
+.animate-dot-3 { animation-delay: 100ms; }
+.animate-dot-4 { animation-delay: 150ms; }
+.animate-dot-5 { animation-delay: 200ms; }
+.animate-dot-6 { animation-delay: 250ms; }
+.animate-dot-7 { animation-delay: 300ms; }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Safe areas ── */
+html {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ── Utilities ── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Focus ring standard */
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-forest;
+}
