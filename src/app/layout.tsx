@@ -10,9 +10,36 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Birdie — Golf Stat Tracker",
+  title: {
+    default: "Birdie — Golf Stat Tracker",
+    template: "%s | Birdie",
+  },
   description:
     "A serious golfer's stat tracker. Fast manual entry. Coach-grade insights. No hardware required.",
+  keywords: ["golf", "stat tracker", "scoring", "handicap", "GIR", "putting"],
+  authors: [{ name: "Birdie Golf" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Birdie",
+    title: "Birdie — Golf Stat Tracker",
+    description:
+      "A serious golfer's stat tracker. Fast manual entry. Coach-grade insights. No hardware required.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Birdie — Golf Stat Tracker",
+    description:
+      "A serious golfer's stat tracker. Fast manual entry. Coach-grade insights.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export const viewport: Viewport = {
