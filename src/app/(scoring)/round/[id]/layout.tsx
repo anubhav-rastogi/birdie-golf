@@ -6,6 +6,7 @@ import { usePathname, useParams, useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LeaveRoundDialog } from "@/components/scoring/leave-round-dialog";
+import { AuthGuard } from "@/components/auth-guard";
 
 const tabs = [
   { label: "Score", suffix: "" },
@@ -21,6 +22,7 @@ export default function ScoringLayout({ children }: { children: React.ReactNode 
   const [showLeave, setShowLeave] = useState(false);
 
   return (
+    <AuthGuard>
     <div className="flex min-h-screen flex-col">
       {/* On-course header */}
       <header className="sticky top-0 z-50 border-b border-olive/30 bg-forest">
@@ -73,5 +75,6 @@ export default function ScoringLayout({ children }: { children: React.ReactNode 
         />
       )}
     </div>
+    </AuthGuard>
   );
 }

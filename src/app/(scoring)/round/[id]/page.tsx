@@ -371,7 +371,8 @@ export default function ScoreEntryPage() {
                     type="text"
                     placeholder="Wind, lie, mental note..."
                     value={hole.notes}
-                    onChange={(e) => updateHole({ notes: e.target.value })}
+                    onChange={(e) => updateHole({ notes: e.target.value.slice(0, 200) })}
+                    maxLength={200}
                     className="rounded-lg border border-olive/50 bg-forest px-4 py-3 text-sm text-cornsilk placeholder:text-cornsilk/30 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
                   />
                 </div>

@@ -91,7 +91,8 @@ export default function NewRoundPage() {
               type="text"
               placeholder="Course name (optional)"
               value={courseName}
-              onChange={(e) => setCourseName(e.target.value)}
+              onChange={(e) => setCourseName(e.target.value.slice(0, 100))}
+              maxLength={100}
               className="rounded-lg border border-olive bg-forest px-4 py-3 text-base text-cornsilk placeholder:text-cornsilk/30 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
             />
           </div>
@@ -107,7 +108,11 @@ export default function NewRoundPage() {
                 inputMode="decimal"
                 placeholder="Slope"
                 value={slope}
-                onChange={(e) => setSlope(e.target.value)}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || /^\d{0,3}$/.test(v)) setSlope(v);
+                }}
+                maxLength={3}
                 className="rounded-lg border border-olive bg-forest px-4 py-3 text-base text-cornsilk placeholder:text-cornsilk/30 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
               />
             </div>
@@ -120,7 +125,11 @@ export default function NewRoundPage() {
                 inputMode="decimal"
                 placeholder="Rating"
                 value={rating}
-                onChange={(e) => setRating(e.target.value)}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "" || /^\d{0,2}(\.\d{0,1})?$/.test(v)) setRating(v);
+                }}
+                maxLength={5}
                 className="rounded-lg border border-olive bg-forest px-4 py-3 text-base text-cornsilk placeholder:text-cornsilk/30 focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/30"
               />
             </div>
@@ -144,7 +153,8 @@ export default function NewRoundPage() {
                     type="text"
                     placeholder={`Player ${i + 1}`}
                     value={player.name}
-                    onChange={(e) => updatePlayerName(i, e.target.value)}
+                    onChange={(e) => updatePlayerName(i, e.target.value.slice(0, 30))}
+                    maxLength={30}
                     className="flex-1 bg-transparent text-base text-cornsilk placeholder:text-cornsilk/30 focus:outline-none"
                     autoFocus={i === players.length - 1 && i > 0}
                   />

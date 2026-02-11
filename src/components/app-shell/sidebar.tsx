@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ClipboardList, TrendingUp, Plus, Search, Sun, Moon } from "lucide-react";
+import { ClipboardList, TrendingUp, Plus, Search, Sun, Moon, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useThemeContext } from "@/lib/theme";
+import { useAuth } from "@/lib/auth";
 
 const navItems = [
   {
@@ -22,6 +23,7 @@ const navItems = [
 export function Sidebar() {
   const pathname = usePathname();
   const { theme, toggle: toggleTheme } = useThemeContext();
+  const { user, logout } = useAuth();
 
   return (
     <aside className="hidden w-56 shrink-0 flex-col border-r border-olive/30 bg-forest lg:flex">
@@ -73,6 +75,14 @@ export function Sidebar() {
 
       {/* Bottom actions */}
       <div className="flex flex-col gap-2 p-3">
+        {/* User info */}
+        {user && (
+          <div className="mb-1 rounded-lg bg-olive/30 px-3 py-2">
+            <p className="truncate text-sm font-medium text-cornsilk">{user.name}</p>
+            <p className="truncate text-xs text-cornsilk/40">{user.email}</p>
+          </div>
+        )}
+
         {/* Theme toggle */}
         <button
           onClick={toggleTheme}
@@ -84,6 +94,15 @@ export function Sidebar() {
             <Moon className="h-[18px] w-[18px]" />
           )}
           {theme === "dark" ? "Light Mode" : "Dark Mode"}
+        </button>
+
+        {/* Sign out */}
+        <button
+          onClick={logout}
+          className="focus-ring flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-cornsilk/50 transition-colors duration-150 hover:bg-red-500/10 hover:text-red-400"
+        >
+          <LogOut className="h-[18px] w-[18px]" />
+          Sign Out
         </button>
 
         {/* New Round CTA */}

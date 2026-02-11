@@ -42,20 +42,27 @@ export default function LandingPage() {
           </p>
 
           {/* CTA */}
-          <Link
-            href="/rounds"
-            className="mt-10 w-full max-w-xs animate-fade-in"
+          <div
+            className="mt-10 flex w-full max-w-xs flex-col gap-3 animate-fade-in"
             style={{ animationDelay: "300ms" }}
           >
-            <Button
-              variant="primary"
-              size="lg"
-              className="w-full text-base font-bold"
+            <Link href="/register" className="w-full">
+              <Button
+                variant="primary"
+                size="lg"
+                className="w-full text-base font-bold"
+              >
+                Get Started
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </Link>
+            <Link
+              href="/login"
+              className="text-center text-sm font-medium text-cornsilk/50 transition-colors hover:text-cornsilk/80"
             >
-              Open App
-              <ArrowRight className="h-5 w-5" />
-            </Button>
-          </Link>
+              Already have an account? Sign in
+            </Link>
+          </div>
 
           {/* Feature pills */}
           <div className="mt-16 grid w-full max-w-sm grid-cols-1 gap-4 sm:grid-cols-3">
